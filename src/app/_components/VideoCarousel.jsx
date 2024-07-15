@@ -1,7 +1,6 @@
 "use client";
 
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 import { useEffect, useRef, useState } from "react";
@@ -21,27 +20,34 @@ const VideoCarousel = () => {
     isPlaying: false,
   });
 
-  const [loadedData, setLoadedData] = useState([]);
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying } = video;
 
-  useGSAP(() => {
-    gsap.to(".slider", {
-      transform: `translateX(${-100 * videoId}%)`,
-      duration: 2,
-      ease: "power2.inOut",
-    });
+  useEffect(() => {
+    ScrollTrigger.create({
+      target: ".video-carousel",
+      trigger: ".video-carousel",
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => {
+        gsap.to(".slider", {
+          transform: `translateX(${-100 * videoId}%)`,
+          duration: 2,
+          ease: "power2.inOut",
+        });
 
-    gsap.to(".video", {
-      scrollTrigger: {
-        trigger: ".video",
-        toggleActions: "restart none none none",
-      },
-      onComplete: () => {
-        setVideo((pre) => ({
-          ...pre,
-          startPlay: true,
-          isPlaying: true,
-        }));
+        gsap.to(".video", {
+          scrollTrigger: {
+            trigger: ".video",
+            toggleActions: "restart none none none",
+          },
+          onComplete: () => {
+            setVideo((pre) => ({
+              ...pre,
+              startPlay: true,
+              isPlaying: true,
+            }));
+          },
+        });
       },
     });
   }, [isEnd, videoId]);
@@ -106,14 +112,12 @@ const VideoCarousel = () => {
   }, [videoId, startPlay]);
 
   useEffect(() => {
-    if (loadedData.length > 3) {
-      if (!isPlaying) {
-        videoRef.current[videoId].pause();
-      } else {
-        startPlay && videoRef.current[videoId].play();
-      }
+    if (!isPlaying) {
+      videoRef.current[videoId].pause();
+    } else {
+      startPlay && videoRef.current[videoId].play();
     }
-  }, [startPlay, videoId, isPlaying, loadedData]);
+  }, [startPlay, videoId, isPlaying]);
 
   const handleProcess = (type, i) => {
     switch (type) {
@@ -142,8 +146,6 @@ const VideoCarousel = () => {
     }
   };
 
-  const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e]);
-
   return (
     <>
       <div className="flex items-center">
@@ -165,7 +167,6 @@ const VideoCarousel = () => {
                   onPlay={() =>
                     setVideo((pre) => ({ ...pre, isPlaying: true }))
                   }
-                  onLoadedMetadata={(e) => handleLoadedMetaData(i, e)}
                 >
                   <source src={list.video} type="video/mp4" />
                 </video>

@@ -33,26 +33,24 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full flex-1 bg-black relative mt-10 flex flex-col justify-between">
-      <div className=" w-full flex-center flex-col">
-        <p
-          id="hero"
-          className="font-semibold text-3xl text-gray-400 opacity-0 text-center"
-        >
-          wePhone 69 noob
-        </p>
+    <div className="w-full flex-1 bg-black relative pt-10 sm:py-4 flex flex-col justify-between items-center">
+      <p
+        id="hero"
+        className="font-semibold text-5xl md:text-3xl text-gray-400 opacity-0 text-center"
+      >
+        wePhone 69 noob
+      </p>
 
-        <div className="w-9/12 md:w-10/12">
-          <video
-            className="pointer-events-none"
-            src={videoSrc}
-            type="video/mp4"
-            autoPlay
-            muted
-            playsInline={true}
-            key={videoSrc}
-          ></video>
-        </div>
+      <div className="w-9/12 md:w-10/14">
+        <video
+          className="pointer-events-none"
+          src={videoSrc}
+          type="video/mp4"
+          autoPlay
+          muted
+          playsInline={true}
+          key={videoSrc}
+        ></video>
       </div>
 
       <div id="cta" className="flex flex-col items-center opacity-0 ">

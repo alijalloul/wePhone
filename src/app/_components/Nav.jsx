@@ -4,7 +4,7 @@ import React from "react";
 const Nav = () => {
   return (
     <header className="w-full py-5 sm:px-10 px-5 flex justify-between items-center ">
-      <nav className="flex w-full">
+      <nav className="flex w-full justify-between">
         <Image
           src="/assets/images/apple.svg"
           alt="appleImg"
@@ -12,7 +12,7 @@ const Nav = () => {
           height={36}
         />
 
-        <div className="flex flex-1 justify-center">
+        <div className="flex flex-1 justify-center sm:hidden">
           {["Store", "Mac", "iPhone", "Support"].map((navItem) => (
             <div
               key={navItem}

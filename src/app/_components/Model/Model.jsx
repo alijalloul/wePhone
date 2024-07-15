@@ -41,6 +41,17 @@ const Model = () => {
 
   const tl = gsap.timeline();
 
+  const canvasContainerRef = useRef(null);
+  const [canvasElement, setCanvasElement] = useState("");
+
+  useEffect(() => {
+    if (canvasContainerRef.current) {
+      // Accessing document is safe here
+      setCanvasElement(document.getElementById("meshContainer"));
+      // Further operations if needed
+    }
+  }, []);
+
   useEffect(() => {
     if (size === "large") {
       animateWithGsapTimeline(tl, small, smallRotation, "#view1", "#view2", {
@@ -71,7 +82,11 @@ const Model = () => {
   }, []);
 
   return (
-    <div id="meshContainer" className="sm:py-32 py-20 sm:px-10 px-5 bg-black">
+    <div
+      ref={canvasContainerRef}
+      id="meshContainer"
+      className="sm:py-10 py-14 sm:px-10 px-5 bg-black "
+    >
       <h1
         id="heading"
         className="text-gray-200 lg:text-6xl md:text-5xl text-3xl font-medium opacity-0 translate-y-20"
@@ -80,13 +95,13 @@ const Model = () => {
       </h1>
       <h5
         id="caption"
-        className="text-gray-200 lg:text-xl md:text-lg text-base lg:mb-0 mb-5 opacity-0 translate-y-20"
+        className="text-gray-200 lg:text-xl md:text-lg text-base lg:mb-0 mb-2 opacity-0 translate-y-20"
       >
         You can rotate the wePhone by dragging and moving the left click
       </h5>
 
       <div className="flex flex-col items-center mt-5">
-        <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
+        <div className="w-full h-[65vh] md:h-[80vh] overflow-hidden relative">
           <ModelView
             index={1}
             groupRef={small}
@@ -107,19 +122,13 @@ const Model = () => {
             size={size}
           />
 
-          <Canvas
-            className="w-full h-full"
-            eventSource={
-              typeof document !== "undefined" &&
-              document.getElementById("meshContainer")
-            }
-          >
+          <Canvas className="w-full h-full" eventSource={canvasElement}>
             <View.Port />
           </Canvas>
 
           <h1
             id="notEaten"
-            className=" text-8xl text-white absolute z-10 right-12 top-[50%] opacity-0"
+            className=" pointer-events-none text-8xl sm:text-4xl text-white absolute z-10 right-12 top-[50%] opacity-0"
           >
             Our Apple Is Not Eaten
           </h1>
@@ -130,8 +139,8 @@ const Model = () => {
             {model.title}
           </p>
 
-          <div className="flex-center">
-            <ul className="flex items-center justify-center px-4 py-4 rounded-full bg-gray-700 backdrop-blur">
+          <div className="flex-center sm:flex-col">
+            <ul className="flex items-center justify-center px-4 py-4 rounded-full bg-gray-700 backdrop-blur sm:mb-4">
               {models.map((item, i) => (
                 <li
                   key={i}
@@ -142,7 +151,7 @@ const Model = () => {
               ))}
             </ul>
 
-            <button className="flex items-center justify-center p-1 rounded-full bg-gray-600 backdrop-blur ml-3 gap-1">
+            <button className="flex items-center justify-center p-1 rounded-full bg-gray-700 backdrop-blur ml-3 gap-1">
               {sizes.map(({ label, value }) => (
                 <span
                   key={label}
@@ -193,13 +202,11 @@ const ModelView = ({
         position={[0, 0, 0]}
       >
         <Suspense fallback={<Loader />}>
-          <Center>
-            <IPhoneMesh
-              scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
-              item={item}
-              size={size}
-            />
-          </Center>
+          <IPhoneMesh
+            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
+            item={item}
+            size={size}
+          />
         </Suspense>
       </group>
 

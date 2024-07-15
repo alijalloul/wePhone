@@ -1,7 +1,7 @@
 export const hightlightsSlides = [
   {
     id: 1,
-    textLists: ["Enter B17 Pro Max.", "Stronk.", "Fast."],
+    textLists: ["Enter B17 Noob Max.", "Stronk.", "Fast."],
     video: "/assets/videos/highlight-first.mp4",
     videoDuration: 4,
   },
@@ -14,7 +14,7 @@ export const hightlightsSlides = [
   {
     id: 3,
     textLists: [
-      "wePhone 69 Pro Max has the",
+      "wePhone 69 Noob Max has the",
       "most number of cameras any",
       "phone ever had. Stonks!",
     ],
@@ -32,25 +32,25 @@ export const hightlightsSlides = [
 export const models = [
   {
     id: 1,
-    title: "wePhone 69 Pro in Natural Titanium",
+    title: "wePhone 69 Noob in Natural Titanium",
     color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
     img: "/assets/images/yellow.jpg",
   },
   {
     id: 2,
-    title: "wePhone 69 Pro in Blue Titanium",
+    title: "wePhone 69 Noob in Blue Titanium",
     color: ["#53596E", "#6395ff", "#21242e"],
     img: "/assets/images/blue.jpg",
   },
   {
     id: 3,
-    title: "wePhone 69 Pro in White Titanium",
+    title: "wePhone 69 Noob in White Titanium",
     color: ["#C9C8C2", "#ffffff", "#C9C8C2"],
     img: "/assets/images/white.jpg",
   },
   {
     id: 4,
-    title: "wePhone 69 Pro in Black Titanium",
+    title: "wePhone 69 Noob in Black Titanium",
     color: ["#454749", "#3b3b3b", "#181819"],
     img: "/assets/images/black.jpg",
   },
