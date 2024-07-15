@@ -19,12 +19,24 @@ const Highlights = () => {
         gsap.to(".link", { opacity: 1, y: 0, duration: 1, stagger: 0.25 });
       },
     });
+
+    // Refresh ScrollTrigger after setup
+    ScrollTrigger.refresh();
+
+    // Optionally, you can also add a resize listener to refresh ScrollTrigger on window resize
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
     <div
       id="highlights"
-      className="w-screen overflow-hidden pt-5 pb-20 px-20 sm:pt-10  sm:px-10 bg-[#191919]"
+      className="overflow-hidden pt-5 pb-20 px-20 sm:pt-10  sm:px-10 bg-[#191919]"
     >
       <div className="mb-12 w-full sm:block flex items-end justify-between">
         <h1
