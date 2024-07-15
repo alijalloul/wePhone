@@ -20,6 +20,11 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        "sm": { "max": "640px" },
+        "md": { "max": "768px" },
+        "lg": { "max": "1024px" },
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
