@@ -30,15 +30,12 @@ const Model = () => {
     img: "/assets/images/yellow.jpg",
   });
 
-  // camera control for the model view
   const cameraControlSmall = useRef();
   const cameraControlLarge = useRef();
 
-  // model
   const small = useRef(new THREE.Group());
   const large = useRef(new THREE.Group());
 
-  // rotation
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
 
@@ -61,7 +58,6 @@ const Model = () => {
   }, [size]);
 
   useEffect(() => {
-    // ScrollTrigger animations
     ScrollTrigger.create({
       trigger: "#meshContainer",
       start: "top center",
