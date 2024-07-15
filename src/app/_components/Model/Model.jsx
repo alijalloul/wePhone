@@ -109,7 +109,10 @@ const Model = () => {
 
           <Canvas
             className="w-full h-full"
-            eventSource={document.getElementById("meshContainer")}
+            eventSource={
+              typeof document !== "undefined" &&
+              document.getElementById("meshContainer")
+            }
           >
             <View.Port />
           </Canvas>
