@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -16,6 +17,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          strategy="lazyload"
+          src="https://www.googletagmanager.com/gtag/js?id=G-7T4Q7RJHY2"
+        ></Script>
+        <Script id="" strategy="lazyOnload">
+          {`  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7T4Q7RJHY2');`}
+        </Script>
+      </head>
+
       <body className={cn("", fontSans.variable)}>{children}</body>
     </html>
   );
