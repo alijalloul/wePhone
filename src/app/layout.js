@@ -19,15 +19,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <Script
-          strategy="lazyload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-7T4Q7RJHY2"
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=G-DHEQSBZYZ8"
         ></Script>
         <Script id="" strategy="lazyOnload">
           {`  window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-7T4Q7RJHY2');`}
+  gtag('config', 'G-DHEQSBZYZ8');`}
         </Script>
       </head>
 
