@@ -1,31 +1,25 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Suspense, useEffect, useRef, useState } from "react";
 
-import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
-import {
-  View,
-  OrbitControls,
-  PerspectiveCamera,
-  Center,
-} from "@react-three/drei";
 import { models, sizes } from "@/constants";
 import { animateWithGsapTimeline } from "@/utils/animations";
+import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 
+import IPhoneMesh from "./_components/IPhoneMesh";
 import Lights from "./_components/Lights";
 import Loader from "./_components/Loader";
-import IPhoneMesh from "./_components/IPhoneMesh";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Model = () => {
   const [size, setSize] = useState("small");
   const [model, setModel] = useState({
-    title: "wePhone 69 Pro in Natural Titanium",
+    title: "wePhone 7 Pro in Natural Titanium",
     color: ["#8F8A81", "#FFE7B9", "#6F6C64"],
     img: "/assets/images/yellow.jpg",
   });
