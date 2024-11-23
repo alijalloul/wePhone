@@ -1,14 +1,8 @@
-import { Html } from "@react-three/drei";
 import React from "react";
+import styles from "./Loader.module.css"; // Import the CSS module
 
 const Loader = () => {
-  return (
-    <Html>
-      <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-        <div className="w-[10vw] h-[10vw] rounded-full">Loading...</div>
-      </div>
-    </Html>
-  );
+  return <span className={styles.loader}></span>; // Use className with the imported styles
 };
 
 export default Loader;

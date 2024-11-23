@@ -6,7 +6,12 @@ import { Suspense, useEffect, useRef, useState } from "react";
 
 import { models, sizes } from "@/constants";
 import { animateWithGsapTimeline } from "@/utils/animations";
-import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
+import {
+  Html,
+  OrbitControls,
+  PerspectiveCamera,
+  View,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -184,35 +189,41 @@ const ModelView = ({
       id={gsapType}
       className={`w-full h-full absolute ${index === 2 ? "right-[-100%]" : ""}`}
     >
-      <ambientLight intensity={0.3} />
-
-      <PerspectiveCamera makeDefault position={[0, 0, 4]} />
-
-      <Lights />
-
-      <group
-        ref={groupRef}
-        name={`${index === 1} ? 'small' : 'large`}
-        position={[0, 0, 0]}
+      <Suspense
+        fallback={
+          <Html>
+            <Loader />
+          </Html>
+        }
       >
-        <Suspense fallback={<Loader />}>
+        <ambientLight intensity={0.3} />
+
+        <PerspectiveCamera makeDefault position={[0, 0, 4]} />
+
+        <Lights />
+
+        <group
+          ref={groupRef}
+          name={`${index === 1} ? 'small' : 'large`}
+          position={[0, 0, 0]}
+        >
           <IPhoneMesh
             scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
             item={item}
             size={size}
           />
-        </Suspense>
-      </group>
+        </group>
 
-      <OrbitControls
-        makeDefault
-        ref={controlRef}
-        enableZoom={false}
-        enablePan={false}
-        rotateSpeed={0.4}
-        target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
-      />
+        <OrbitControls
+          makeDefault
+          ref={controlRef}
+          enableZoom={false}
+          enablePan={false}
+          rotateSpeed={0.4}
+          target={new THREE.Vector3(0, 0, 0)}
+          onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
+        />
+      </Suspense>
     </View>
   );
 };
